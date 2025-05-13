@@ -12,7 +12,8 @@ RUN pip install --no-cache-dir -r requirements_jupyter.txt
 
 COPY . .
 
-WORKDIR /usr/src/app/myproject
+# ✅ ตรง path จริงของ manage.py
+WORKDIR /usr/src/app/plookjing
 
 EXPOSE 8888
 

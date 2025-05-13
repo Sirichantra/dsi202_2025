@@ -31,14 +31,15 @@ services:
       POSTGRES_HOST: db
     depends_on:
       - db
-    command: /bin/bash /usr/src/app/entrypoint.sh
+    command: python manage.py runserver 0.0.0.0:8000
+
 
   jupyter:
     build:
       context: .
       dockerfile: Dockerfile.jupyter
     container_name: jupyter
-    working_dir: /usr/src/app/myproject
+    working_dir: /usr/src/app/plookjing  # ✅ ถูกต้อง
     volumes:
       - .:/usr/src/app:rw
     ports:
@@ -47,6 +48,8 @@ services:
       PYTHONUNBUFFERED: 1
     depends_on:
       - db
+    command: jupyter notebook --allow-root --ip=0.0.0.0 --NotebookApp.token=''
+
 
 volumes:
   db_data:
