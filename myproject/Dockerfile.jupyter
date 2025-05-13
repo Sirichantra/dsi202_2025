@@ -11,10 +11,4 @@ COPY requirements_jupyter.txt .
 RUN pip install --no-cache-dir -r requirements_jupyter.txt
 
 COPY . .
-
-# ✅ ตรง path จริงของ manage.py
 WORKDIR /usr/src/app/plookjing
-
-EXPOSE 8888
-
-CMD ["python", "manage.py", "shell_plus", "--notebook", "--", "--allow-root", "--ip=0.0.0.0", "--NotebookApp.token="]

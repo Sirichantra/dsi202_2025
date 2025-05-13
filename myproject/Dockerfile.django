@@ -1,21 +1,15 @@
-# ใช้ Python เวอร์ชันใหม่ที่ปลอดภัยขึ้น
 FROM python:3.11-slim-bullseye
 
-# ติดตั้ง system dependencies ที่จำเป็น
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# สร้าง working directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/plookjing
 
-# คัดลอก requirements สำหรับ Django และติดตั้ง dependencies
 COPY requirements_django.txt ./
 RUN pip install --no-cache-dir -r requirements_django.txt
 
-# คัดลอกไฟล์โปรเจคทั้งหมด
-COPY . .
+COPY . /usr/src/app/
 
-# (ตัวเลือก: ถ้าต้องการรันตรงจาก Dockerfile)
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

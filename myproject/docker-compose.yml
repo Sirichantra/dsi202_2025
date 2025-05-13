@@ -11,16 +11,16 @@ services:
       POSTGRES_USER: django_user
       POSTGRES_PASSWORD: django_pass
     ports:
-      - "5432:5432"  # ✅ พอร์ตของ PostgreSQL ควรเป็น 5432
-    restart: unless-stopped
+      - "5432:5432"
 
-  web:
+   web:
     build:
       context: .
       dockerfile: Dockerfile.django
     container_name: django
     volumes:
-      - .:/usr/src/app:rw
+      - .:/usr/src/app
+    working_dir: /usr/src/app/plookjing
     ports:
       - "8000:8000"
     environment:
@@ -33,23 +33,20 @@ services:
       - db
     command: python manage.py runserver 0.0.0.0:8000
 
-
   jupyter:
     build:
       context: .
       dockerfile: Dockerfile.jupyter
     container_name: jupyter
-    working_dir: /usr/src/app/plookjing  # ✅ ถูกต้อง
     volumes:
-      - .:/usr/src/app:rw
+      - .:/usr/src/app
+    working_dir: /usr/src/app/plookjing
     ports:
       - "8888:8888"
-    environment:
-      PYTHONUNBUFFERED: 1
+    command: >
+      python manage.py shell_plus --notebook -- --allow-root --ip=0.0.0.0 --NotebookApp.token=""
     depends_on:
       - db
-    command: jupyter notebook --allow-root --ip=0.0.0.0 --NotebookApp.token=''
-
 
 volumes:
   db_data:
