@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>รายการต้นไม้</h2>
+  {% for tree in trees %}
+    <div>{{ tree.name }}</div>
+  {% endfor %}
+{% endblock %}
