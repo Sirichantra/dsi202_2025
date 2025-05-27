@@ -3,4 +3,6 @@ from django.apps import AppConfig
 class MyappConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'myapp'
-    verbose_name = 'Plookjing Planting System'
+
+    def ready(self):
+        import myapp.signals  # ✅ ต้องให้ไฟล์นี้มีอยู่จริง

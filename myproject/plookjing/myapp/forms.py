@@ -1,7 +1,7 @@
 from django import forms
-from .models import UserPlanting
+from django.contrib.auth.models import User
 
-class UserPlantingForm(forms.ModelForm):
+class UserUpdateForm(forms.ModelForm):
     class Meta:
-        model = UserPlanting
-        fields = []  # ไม่ต้องกรอกเองในฟอร์ม (กำหนด user, tree, location และ planting_date ผ่านโค้ด)
+        model = User
+        fields = ['username', 'email']
