@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Plantity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex justify-between items-center px-8 py-6 bg-white shadow-sm">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/kB05FDtm/logo2.png" alt="Plantity Logo" class="h-16 w-auto">
+        <span class="text-4xl font-bold text-green-900 mt-4">PlookJing</span>
+      </a>
+      <div class="flex items-center ml-auto"></div>
+      <div class="relative w-64">
+
+      </div>
+      
+      <a href="{% url 'notification_list' %}" class="text-green-900 text-xl relative hover:text-orange-600">
+        <i class="fas fa-bell"></i>
+  <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+      </a>
+      
+      <a href="{% url 'user_profile' %}">
+        <img src="https://i.postimg.cc/FsKfhghK/Chat-GPT-Image-May-27-2025-04-35-43-PM.png" class="rounded-full w-10 h-10" alt="User">
+      </a>      
+    </div>
+<style>
+  body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #EFFAF3;
+  }
+
+  .payment-container {
+    max-width: 720px;
+    margin: 3rem auto;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  }
+
+  .payment-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .item-summary, .shipping-info, .qr-box {
+    margin-top: 1.5rem;
+  }
+
+  .item-summary {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .item-summary img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+  }
+
+  .item-info h3 {
+    font-size: 1.4rem;
+    color: #0D3F31;
+  }
+
+  .amount-value {
+    text-align: right;
+    font-size: 1.8rem;
+    color: #FB7E2B;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+
+  .shipping-info {
+    background: #F8F9FA;
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .shipping-info p {
+    margin: 0.3rem 0;
+    color: #333;
+  }
+
+  .qr-box {
+    text-align: center;
+  }
+
+  .qr-box img {
+    width: 180px;
+    height: 180px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+  }
+
+  .upload-btn {
+    margin-top: 1.5rem;
+    display: block;
+    width: 100%;
+    background-color: #0D6E3E;
+    color: white;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: 'Prompt', sans-serif;
+  }
+
+  .upload-btn:hover {
+    background-color: #095C34;
+  }
+
+  .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .link-later {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #FB7E2B;
+    text-decoration: underline;
+    font-size: 0.95rem;
+  }
+
+  .clear-btn {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    color: #000;
+    margin-left: 0.4rem;
+    cursor: pointer;
+  }
+
+  .file-row {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .file-label {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: 'Prompt', sans-serif;
+  }
+
+  .file-label span {
+    color: red;
+  }
+</style>
+
+<div class="payment-container">
+  <div class="payment-header">
+    <h2>ยืนยันการชำระเงิน</h2>
+    <p>กรุณาตรวจสอบรายการและดำเนินการชำระเงินภายในระยะเวลาที่กำหนด</p>
+  </div>
+
+  <div class="item-summary" style="background: #F8F9FA; padding: 1rem; border-radius: 12px;">
+    <img src="{{ equipment.image_url }}" alt="{{ equipment.name }}">
+    <div class="item-info">
+      <h3 style="margin-bottom: 0.5rem;">{{ equipment.name }}</h3>
+      <p style="margin: 0.2rem 0;"><strong>จำนวน:</strong> {{ qty }} ชิ้น</p>
+      <p style="margin: 0.2rem 0;"><strong>ราคาต่อชิ้น:</strong> {{ equipment.price|floatformat:2 }} บาท</p>
+      <p><strong>รวม: {{ total|floatformat:2 }} บาท</strong></p>
+      <p style="margin: 0.8rem 0 0; font-size: 1.2rem; color: #FB7E2B; font-weight: bold;">
+        💰 รวม: {{ total|floatformat:2 }} บาท
+      </p>
+    </div>
+  </div>
+
+  <div class="amount-value">
+    ยอดรวม: {{ total|floatformat:2 }} บาท
+  </div>
+
+  <div class="shipping-info">
+    <h4>ข้อมูลการจัดส่ง</h4>
+    <p><strong>ชื่อ:</strong> {{ name }}</p>
+    <p><strong>เบอร์โทร:</strong> {{ tel }}</p>
+    <p><strong>ที่อยู่:</strong> {{ full_address }}</p>
+  </div>
+
+  <div class="qr-box">
+    <img src="data:image/png;base64,{{ qr_base64 }}" alt="QR Code">
+    <p>สแกน QR ด้วยแอปธนาคารเพื่อชำระเงิน</p>
+    <p id="countdown" style="font-weight: bold; color: #FB7E2B;"></p>
+  </div>
+
+  <form method="post" action="{% url 'create_pending_order' equipment.id %}" enctype="multipart/form-data" id="createOrderLaterForm">
+    {% csrf_token %}
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="tel" value="{{ tel }}">
+    <input type="hidden" name="address" value="{{ full_address }}">
+    <input type="hidden" name="qty" value="{{ qty }}">
+    <label class="file-label">แนบสลิปชำระเงิน <span>*</span></label>
+    <div class="file-row">
+      <input type="file" id="paymentSlip" name="payment_slip" accept="image/*" required>
+      <button type="button" class="clear-btn" onclick="clearFile()" id="clearBtn" style="display: none;">ลบไฟล์</button>
+    </div>
+    <button type="submit" id="submitBtn" class="upload-btn disabled" disabled>ยืนยันคำสั่งซื้อ</button>
+  </form>
+
+<script>
+  let seconds = 300;
+  const countdownEl = document.getElementById('countdown');
+
+  function updateCountdown() {
+    if (seconds <= 0) {
+      alert("QR Code หมดอายุแล้ว กรุณาเริ่มการสั่งซื้อใหม่อีกครั้ง");
+      window.location.href = "{% url 'equipment_list' %}";
+      return;
+    }
+    const minutes = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    countdownEl.textContent = `QR Code จะหมดอายุใน ${minutes}:${sec.toString().padStart(2, '0')} นาที`;
+    seconds--;
+    setTimeout(updateCountdown, 1000);
+  }
+  updateCountdown();
+
+  const slipInput = document.getElementById('paymentSlip');
+  const submitBtn = document.getElementById('submitBtn');
+  const clearBtn = document.getElementById('clearBtn');
+
+  slipInput.addEventListener('change', function () {
+    if (slipInput.files.length > 0) {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove("disabled");
+      clearBtn.style.display = 'inline';
+    } else {
+      submitBtn.disabled = true;
+      submitBtn.classList.add("disabled");
+      clearBtn.style.display = 'none';
+    }
+  });
+
+  function clearFile() {
+    slipInput.value = '';
+    const newInput = slipInput.cloneNode(true);
+    slipInput.parentNode.replaceChild(newInput, slipInput);
+    newInput.id = 'paymentSlip';
+    newInput.name = 'payment_slip';
+    newInput.accept = 'image/*';
+
+    newInput.addEventListener('change', function () {
+      if (newInput.files.length > 0) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("disabled");
+        clearBtn.style.display = 'inline';
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.classList.add("disabled");
+        clearBtn.style.display = 'none';
+      }
+    });
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add("disabled");
+    clearBtn.style.display = 'none';
+  }
+</script>

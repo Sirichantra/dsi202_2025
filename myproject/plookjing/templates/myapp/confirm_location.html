@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Plantity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex justify-between items-center px-8 py-6 bg-white shadow-sm">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/kB05FDtm/logo2.png" alt="Plantity Logo" class="h-16 w-auto">
+        <span class="text-4xl font-bold text-green-900 mt-4">PlookJing</span>
+      </a>
+      <div class="flex items-center ml-auto"></div>
+      <div class="relative w-64">
+
+      </div>
+      
+      <a href="{% url 'notification_list' %}" class="text-green-900 text-xl relative hover:text-orange-600">
+        <i class="fas fa-bell"></i>
+  <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+      </a>
+      
+      <a href="{% url 'user_profile' %}">
+        <img src="https://i.postimg.cc/FsKfhghK/Chat-GPT-Image-May-27-2025-04-35-43-PM.png" class="rounded-full w-10 h-10" alt="User">
+      </a>      
+    </div>
+
+<style>
+  body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #F5FBF7;
+  }
+
+  .confirmation-container {
+    max-width: 720px;
+    margin: 3rem auto;
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .confirmation-header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0D3F31;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tree-location-box {
+    background-color: #F0F8F4;
+    padding: 1.2rem;
+    border: 1px solid #CCEED4;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .tree-location-box p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .confirm-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .confirm-btn {
+    background-color: #0D6E3E;
+    color: white;
+    padding: 0.9rem 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .confirm-btn:hover {
+    background-color: #095C34;
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+    color: #FB7E2B;
+    text-decoration: underline;
+    align-self: center;
+  }
+</style>
+
+<div class="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-lg font-[Prompt] text-gray-800 mt-10">
+
+  <h1 class="text-2xl font-bold text-green-900 mb-6 text-center"> ยืนยันการปลูกต้นไม้</h1>
+
+  {% if tree.image %}
+    <img src="{{ tree.image.url }}" alt="{{ tree.name }}"
+         class="w-full max-h-64 object-cover rounded-xl mb-5 shadow" />
+  {% endif %}
+
+  <div class="bg-green-50 border-l-4 border-green-600 rounded-lg p-4 mb-6 shadow-sm">
+    <p class="text-lg mb-2"><strong>ต้นไม้:</strong> {{ tree.name }}</p>
+    <p class="text-lg mb-2"><strong>สถานที่:</strong> {{ location.name }}</p>
+    <p class="text-lg"><strong>ราคา:</strong> <span class="text-orange-600 font-bold">{{ tree.price|floatformat:2 }} บาท</span></p>
+  </div>
+
+  <p class="text-sm text-gray-500 text-center mb-6">กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนดำเนินการ</p>
+
+  <div class="flex flex-col sm:flex-row gap-4 justify-center">
+    <a href="{% url 'plant_tree_at_location' tree.id location.id %}"
+      style="background-color: #FB923C; color: white;"
+      class="bg-orange-200 hover:bg-green-800 text-white text-center px-6 py-3 rounded-full shadow transition">
+      ✅ ดำเนินการชำระเงิน
+    </a>
+
+
+    <a href="{% url 'select_location_for_tree' tree.id %}"
+       class="text-green-800 text-sm text-center hover:underline">
+      ← กลับไปเลือกสถานที่
+    </a>
+  </div>
+</div>

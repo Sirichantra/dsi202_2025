@@ -1,0 +1,252 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Plantity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+=======
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}ต้นไม้ของฉัน | PLOOKJING{% endblock %}
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730
+
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex justify-between items-center px-8 py-6 bg-white shadow-sm">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/kB05FDtm/logo2.png" alt="Plantity Logo" class="h-16 w-auto">
+        <span class="text-4xl font-bold text-green-900 mt-4">PlookJing</span>
+      </a>
+      <div class="flex items-center ml-auto"></div>
+      <div class="relative w-64">
+      </div>
+      
+      <a href="{% url 'notification_list' %}" class="text-green-900 text-xl relative hover:text-orange-600">
+        <i class="fas fa-bell"></i>
+  <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+      </a>
+      
+      <a href="{% url 'user_profile' %}">
+        <img src="https://i.postimg.cc/FsKfhghK/Chat-GPT-Image-May-27-2025-04-35-43-PM.png" class="rounded-full w-10 h-10" alt="User">
+      </a>      
+    </div>
+<style>
+  body { font-family: 'Prompt', sans-serif; background-color: #F3F6F9; }
+  .orders-page { max-width: 1080px; margin: 2rem auto; padding: 2rem; }
+
+  .orders-header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0D3F31;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .status-filter {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .status-tab {
+    padding: 0.6rem 1.4rem;
+    background: #E6F4EC;
+    color: #0D6E3E;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .status-tab:hover {
+    background: #CCE9DB;
+  }
+
+  .status-tab.active {
+    background: #FB7E2B;
+    color: white;
+    border-color: #FB7E2B;
+  }
+
+  .order-item {
+    background: white;
+    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+  }
+
+  .order-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #E0E0E0;
+  }
+
+  .order-info { flex: 1; }
+
+  .order-info h4 {
+    font-size: 1rem;
+    color: #FB7E2B;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .order-info p {
+    margin: 0.2rem 0;
+    color: #555;
+    font-size: 0.92rem;
+  }
+
+  .order-date {
+    font-size: 0.85rem;
+    color: #999;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 640px;
+    position: relative;
+    font-family: 'Prompt', sans-serif;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .close {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: #999;
+    cursor: pointer;
+  }
+
+  .gray-box {
+    background: #F9FAFB;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+</style>
+
+<<<<<<< HEAD
+{% load static %}
+
+<div class="my-trees-container">
+  <div class="my-trees-header">My Trees</div>
+
+  {% if trees %}
+  <div class="tree-list">
+    {% for tree in trees %}
+    <div class="tree-card">
+      {% if tree.tree.image_url %}
+        <img src="{{ tree.tree.image_url }}" alt="{{ tree.tree.name }}" />
+      {% else %}
+        <img src="{% static 'images/default_tree.png' %}" alt="No Image" />
+      {% endif %}
+      <h3>{{ tree.tree.name }}</h3>
+      <p><strong>Location:</strong> {{ tree.location.name }}</p>
+      <p><strong>Planted on:</strong> {{ tree.planting_date|date:"d M Y" }}</p>
+      <span class="status">
+        {% if tree.is_completed %}
+          Completed
+        {% else %}
+          In Progress
+        {% endif %}
+      </span>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="no-tree">
+    You haven't planted any trees yet. Start your journey today!
+  </div>
+  {% endif %}
+</div>
+=======
+<div class="orders-page">
+  <div class="orders-header">ต้นไม้ของฉัน</div>
+
+  <div class="status-filter">
+    <a href="?status=all" class="status-tab {% if selected_status == 'all' %}active{% endif %}">ทั้งหมด ({{ status_counts.all }})</a>
+    <a href="?status=verifying" class="status-tab {% if selected_status == 'verifying' %}active{% endif %}">กำลังตรวจสอบ ({{ status_counts.verifying }})</a>
+    <a href="?status=in_progress" class="status-tab {% if selected_status == 'in_progress' %}active{% endif %}">กำลังดำเนินการ ({{ status_counts.in_progress }})</a>
+    <a href="?status=completed" class="status-tab {% if selected_status == 'completed' %}active{% endif %}">ปลูกสำเร็จแล้ว ({{ status_counts.completed }})</a>
+  </div>
+
+  {% for tree in trees %}
+    <div class="order-item" onclick="openModal('modal-{{ tree.id }}')">
+      <img src="{{ tree.tree.image_url|default:'/static/images/default_tree.png' }}" alt="{{ tree.tree.name }}">
+      <div class="order-info">
+        <h4>{{ tree.tree.name }}</h4>
+        <p>สถานที่ {{ tree.location.name }}</p>
+        <p class="order-date">เมื่อ {{ tree.planting_date|date:"d/m/Y เวลา H:i" }}</p>
+        <p><strong>สถานะ</strong> {{ tree.get_status_display }}</p>
+      </div>
+    </div>
+
+    <div id="modal-{{ tree.id }}" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-{{ tree.id }}')">&times;</span>
+        <h3>รายละเอียดต้นไม้</h3>
+
+        <div class="gray-box">
+          <p><strong>ชื่อพันธุ์ไม้</strong> {{ tree.tree.name }}</p>
+          <p><strong>คำอธิบาย</strong> {{ tree.tree.description|default:"-" }}</p>
+          <p><strong>สถานที่ปลูก</strong> {{ tree.location.name }}</p>
+          <p><strong>วันที่สั่งซื้อ</strong> {{ tree.planting_date|date:"d/m/Y เวลา H:i" }}</p>
+          {% if tree.status == 'completed' %}
+            <p><strong>วันที่ปลูกสำเร็จ</strong> {{ tree.planting_date|date:"d/m/Y เวลา H:i" }}</p>
+          {% endif %}
+        </div>
+
+        <div class="gray-box">
+          <p><strong>สถานะ</strong> {{ tree.get_status_display }}</p>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p style="text-align:center; color:#777;">คุณยังไม่ได้ปลูกต้นไม้ใด ๆ</p>
+  {% endfor %}
+</div>
+
+<script>
+  function openModal(id) { document.getElementById(id).style.display = 'block'; }
+  function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+</script>
+{% endblock %}
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730

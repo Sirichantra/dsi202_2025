@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% block title %}กรอกที่อยู่สำหรับจัดส่งอุปกรณ์ | PLOOKJING{% endblock %}
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #F0F4F8;
+  }
+
+  .address-form {
+    max-width: 760px;
+    margin: 3rem auto;
+    padding: 2.8rem 2.5rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    animation: fadeInUp 0.5s ease-in-out;
+  }
+
+  .address-form h2 {
+    font-size: 2rem;
+    color: #0D3F31;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .address-form p {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #6B7280;
+    margin-bottom: 2rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group.full {
+    grid-column: span 2;
+  }
+
+  label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0D3F31;
+    font-size: 0.95rem;
+  }
+
+  .required-star {
+    color: #FB7E2B;
+    font-weight: bold;
+    margin-left: 2px;
+  }
+
+  input, textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: #F9FCFB;
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #FB7E2B;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .submit-btn {
+    margin-top: 2.5rem;
+    width: 100%;
+    background-color: #FB7E2B;
+    color: white;
+    border: none;
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(251, 126, 43, 0.2);
+  }
+
+  .submit-btn:hover {
+    background-color: #E76C1C;
+  }
+
+  @media (max-width: 768px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+<div class="address-form">
+  <h2>ที่อยู่สำหรับจัดส่งอุปกรณ์</h2>
+  <p>ที่อยู่นี้ใช้สำหรับจัดส่ง <strong>สินค้าอุปกรณ์</strong> เท่านั้น <br> ไม่เกี่ยวข้องกับสถานที่ปลูกต้นไม้</p>
+
+  <form method="POST" action="{% url 'confirm_cart_order' %}">
+    {% csrf_token %}
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="name">ชื่อ-นามสกุล <span class="required-star">*</span></label>
+        <input type="text" id="name" name="name" required placeholder="กรอกชื่อของคุณ">
+      </div>
+
+      <div class="form-group">
+        <label for="tel">เบอร์โทรศัพท์ <span class="required-star">*</span></label>
+        <input type="text" id="tel" name="tel" required placeholder="08xxxxxxxx">
+      </div>
+
+      <div class="form-group">
+        <label for="province">จังหวัด <span class="required-star">*</span></label>
+        <input type="text" id="province" name="province" required placeholder="กรุงเทพมหานคร">
+      </div>
+
+      <div class="form-group">
+        <label for="district">อำเภอ/เขต <span class="required-star">*</span></label>
+        <input type="text" id="district" name="district" required placeholder="เขต/อำเภอ">
+      </div>
+
+      <div class="form-group">
+        <label for="subdistrict">ตำบล/แขวง <span class="required-star">*</span></label>
+        <input type="text" id="subdistrict" name="subdistrict" required placeholder="แขวง/ตำบล">
+      </div>
+
+      <div class="form-group">
+        <label for="zipcode">รหัสไปรษณีย์ <span class="required-star">*</span></label>
+        <input type="text" id="zipcode" name="zipcode" required placeholder="10100">
+      </div>
+
+      <div class="form-group full">
+        <label for="address">ที่อยู่โดยละเอียด <span class="required-star">*</span></label>
+        <textarea id="address" name="address" rows="3" required placeholder="บ้านเลขที่ / หมู่บ้าน / อาคาร / ซอย / ถนน ฯลฯ"></textarea>
+      </div>
+    </div>
+
+    <button class="submit-btn">ยืนยันที่อยู่และดำเนินการต่อ</button>
+  </form>
+</div>
+{% endblock %}

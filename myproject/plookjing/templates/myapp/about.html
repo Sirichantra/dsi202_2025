@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% block title %}เกี่ยวกับเรา | PLOOKJING{% endblock %}
+{% load static %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Prompt', sans-serif; background-color: #F3F6F9; }
+
+  .about-page {
+    max-width: 960px;
+    margin: 3rem auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .about-header {
+    background: linear-gradient(to right, #5A815C, #D9B26F);
+    padding: 3rem 2rem;
+    color: white;
+    text-align: center;
+  }
+
+  .about-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-header p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.6;
+  }
+
+  .about-content {
+    padding: 2.5rem;
+  }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
+  .section h2 {
+    font-size: 1.6rem;
+    color: #0D3F31;
+    margin-bottom: 1rem;
+  }
+
+  .section p {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.8;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .value-card {
+    background: #F9FAFB;
+    padding: 1.5rem;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+
+  .value-card h3 {
+    color: #0D6E3E;
+    margin-bottom: 0.5rem;
+  }
+
+  .value-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .cta-box {
+    background: linear-gradient(to right, #FCECD8, #FB7E2B);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 3rem;
+    color: #0D3F31;
+  }
+
+  .cta-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  .cta-box p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-box a {
+    background: #0D6E3E;
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .cta-box a:hover {
+    background: #095C34;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  }
+</style>
+
+<div class="about-page">
+  <div class="about-header">
+    <h1>เกี่ยวกับ PLOOKJING</h1>
+    <p>แพลตฟอร์มปลูกต้นไม้ทางไกลที่จะเชื่อมโยงคุณกับธรรมชาติอย่างง่ายดายและยั่งยืน</p>
+  </div>
+
+  <div class="about-content">
+    <div class="section">
+      <h2>พันธกิจของเรา</h2>
+      <p>
+        เราเชื่อว่าการเปลี่ยนแปลงโลกไม่จำเป็นต้องเริ่มจากสิ่งยิ่งใหญ่ แต่เริ่มจากความตั้งใจเล็ก ๆ ที่จริงจัง
+        PLOOKJING จึงถูกสร้างขึ้นเพื่อให้ทุกคนมีโอกาส "ปลูกต้นไม้" ได้แม้จะไม่ได้ออกจากบ้าน
+        ด้วยเทคโนโลยีที่ทันสมัย เราทำให้การปลูกต้นไม้กลายเป็นเรื่องง่าย สนุก และมีผลกระทบที่แท้จริง
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>สิ่งที่เราเชื่อ</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>ธรรมชาติคือบ้าน</h3>
+          <p>เรามุ่งมั่นอนุรักษ์สิ่งแวดล้อมผ่านการปลูกต้นไม้ที่วางแผนและดูแลอย่างต่อเนื่อง</p>
+        </div>
+        <div class="value-card">
+          <h3>ทุกคนคือผู้เปลี่ยนแปลง</h3>
+          <p>คุณไม่จำเป็นต้องเป็นนักอนุรักษ์เพื่อเริ่มต้นปลูก เพียงแค่คุณลงมือ โลกก็เปลี่ยนแล้ว</p>
+        </div>
+        <div class="value-card">
+          <h3>ชุมชนคือพลัง</h3>
+          <p>เราสร้างพื้นที่ให้คนรักต้นไม้ นักเรียน และองค์กร ร่วมกันสร้างโลกสีเขียว</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>เทคโนโลยีที่เปลี่ยนโลก</h2>
+      <p>
+        ระบบของเราผสมผสานข้อมูลพิกัดจริง แผนการปลูก และการแจ้งเตือนดูแลต้นไม้
+        เพื่อให้คุณสามารถติดตามต้นไม้ของคุณได้ทุกที่ทุกเวลา พร้อมรับการอัปเดตสถานะแบบเรียลไทม์
+      </p>
+    </div>
+
+    <div class="cta-box">
+      <h2>พร้อมจะปลูกต้นไม้ต้นแรกของคุณแล้วหรือยัง?</h2>
+      <p>เข้าร่วมกับเราวันนี้ และเริ่มต้นสร้างโลกที่เขียวขึ้น พร้อมกับอีกหลายพันคนที่มีหัวใจเดียวกัน</p>
+      <a href="{% url 'tree_list' %}">เริ่มปลูกเลย</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

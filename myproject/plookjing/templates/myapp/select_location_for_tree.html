@@ -1,0 +1,217 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Plantity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex justify-between items-center px-8 py-6 bg-white shadow-sm">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/kB05FDtm/logo2.png" alt="Plantity Logo" class="h-16 w-auto">
+        <span class="text-4xl font-bold text-green-900 mt-4">PlookJing</span>
+      </a>
+    <div class="flex items-center gap-3"></div>
+=======
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}เลือกสถานที่ปลูกต้นไม้ | PLOOKJING{% endblock %}
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730
+
+      <a href="{% url 'notification_list' %}" class="text-green-900 text-xl relative hover:text-orange-600">
+        <i class="fas fa-bell"></i>
+  <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+      </a>
+
+      <a href="{% url 'user_profile' %}">
+        <img src="https://i.postimg.cc/FsKfhghK/Chat-GPT-Image-May-27-2025-04-35-43-PM.png" class="rounded-full w-10 h-10" alt="User">
+      </a>
+      
+    </div>
+
+<style>
+  body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #F3F6F9;
+  }
+
+  .location-page {
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    animation: fadeInUp 0.5s ease-in-out;
+  }
+
+  .location-header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0D3F31;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .search-form {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .search-form input {
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    border: 2px solid #0D3F31;
+    font-size: 1rem;
+    width: 300px;
+    background: #F9FCFB;
+    color: #0D3F31;
+  }
+
+  .search-form button {
+    padding: 0.75rem 1.6rem;
+    background: linear-gradient(135deg, #FB7E2B, #FFA15C);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(251, 126, 43, 0.3);
+  }
+
+  .search-form button:hover {
+    background: linear-gradient(135deg, #E76C1C, #FF9933);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(251, 126, 43, 0.4);
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .location-card {
+    background-color: #F9FCFB;
+    border: 2px solid #CCEED4;
+    padding: 1.5rem;
+    border-radius: 18px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .location-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+  }
+
+  .location-card h3 {
+    color: #0D3F31;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .location-card p {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .plant-button {
+    margin-top: 1.2rem;
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    background-color: #FB7E2B;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(251, 126, 43, 0.2);
+    transition: background-color 0.3s ease;
+  }
+
+  .plant-button:hover {
+    background-color: #E76C1C;
+  }
+
+  .intro-box {
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+    margin-top: 2.5rem;
+  }
+
+  .contact-link {
+    color: #FB7E2B;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .contact-link:hover {
+    text-decoration: underline;
+  }
+
+  @keyframes fadeInUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+</style>
+
+<div class="location-page">
+  <div class="location-header">เลือกสถานที่ปลูกต้นไม้ของคุณ</div>
+
+  <form method="get" class="search-form">
+    <input type="text" name="q" value="{{ query }}" placeholder="ค้นหาจังหวัด..." />
+    <button type="submit">ค้นหา</button>
+  </form>
+
+  {% if locations %}
+    <div class="location-grid">
+      {% for location in locations %}
+        <div class="location-card">
+          <h3>{{ location.name }}</h3>
+          <p>{{ location.description|truncatechars:100 }}</p>
+          <a href="{% url 'plant_tree_at_location' tree.id location.id %}" class="plant-button">
+            เลือกจังหวัดนี้
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="intro-box">
+      ไม่พบสถานที่ปลูก
+    </div>
+  {% endif %}
+
+<<<<<<< HEAD
+  <div class="map-placeholder">
+    "มือคุณคลิก ต้นไม้ก็เติบโต — โลกใหม่เริ่มจากปลายนิ้วคุณ"<br>
+    🌱 ปลูกจริง เพื่ออนาคตที่ยั่งยืน
+=======
+  <div class="intro-box">
+    ต้องการเสนอพื้นที่ปลูกเพิ่มเติม?
+    <a href="{% url 'contact' %}" class="contact-link">ติดต่อเรา</a>
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730
+  </div>
+</div>

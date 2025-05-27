@@ -1,0 +1,275 @@
+<<<<<<< HEAD
+<DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Plantity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+=======
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}คำสั่งซื้อของฉัน | PLOOKJING{% endblock %}
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730
+
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex justify-between items-center px-8 py-6 bg-white shadow-sm">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/kB05FDtm/logo2.png" alt="Plantity Logo" class="h-16 w-auto">
+        <span class="text-4xl font-bold text-green-900 mt-4">PlookJing</span>
+      </a>
+      <div class="flex items-center ml-auto"></div>
+      <div class="relative w-64">
+
+      </div>
+      
+      <a href="{% url 'notification_list' %}" class="text-green-900 text-xl relative hover:text-orange-600">
+        <i class="fas fa-bell"></i>
+  <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+      </a>
+      
+      <a href="{% url 'user_profile' %}">
+        <img src="https://i.postimg.cc/FsKfhghK/Chat-GPT-Image-May-27-2025-04-35-43-PM.png" class="rounded-full w-10 h-10" alt="User">
+      </a>      
+    </div>
+<style>
+  body { font-family: 'Prompt', sans-serif; background-color: #F3F6F9; }
+  .orders-page { max-width: 1080px; margin: 2rem auto; padding: 2rem; }
+
+  .orders-header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0D3F31;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .status-filter {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .status-tab {
+    padding: 0.6rem 1.4rem;
+    background: #E6F4EC;
+    color: #0D6E3E;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .status-tab:hover {
+    background: #CCE9DB;
+  }
+
+  .status-tab.active {
+    background: #FB7E2B;
+    color: white;
+    border-color: #FB7E2B;
+  }
+
+  .order-item {
+    background: white;
+    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+  }
+
+  .order-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #E0E0E0;
+  }
+
+  .order-info {
+    flex: 1;
+  }
+
+  .order-info h4 {
+    font-size: 1rem;
+    color: #FB7E2B;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .order-info p {
+    margin: 0.2rem 0;
+    color: #555;
+    font-size: 0.92rem;
+  }
+
+  .order-date {
+    font-size: 0.85rem;
+    color: #999;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 640px;
+    position: relative;
+    font-family: 'Prompt', sans-serif;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .close {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: #999;
+    cursor: pointer;
+  }
+
+  .gray-box {
+    background: #F9FAFB;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+</style>
+
+<div class="orders-page">
+  <div class="orders-header">คำสั่งซื้อของฉัน</div>
+<<<<<<< HEAD
+  <div class="order-list">
+    {% for order in purchases %}
+      <div class="order-item" onclick="openModal('modal-{{ order.id }}')">
+        <div class="order-summary">
+          <img src="{{ order.equipment.image_url }}" alt="{{ order.equipment.name }}">
+          <div class="order-info">
+            <h4>{{ order.equipment.name }}</h4>
+            <p>x {{ order.quantity }} ชิ้น</p>
+            <p>รวม {{ order.total_price|floatformat:2 }} บาท</p>
+            <p class="order-status status-{{ order.status }}">สถานะ: {{ order.get_status_display }}</p>
+            <p style="font-size: 0.8rem; color: #888;">หมายเลข: {{ order.order_number }}</p>
+            <p style="font-size: 0.8rem; color: #aaa;">สั่งเมื่อ {{ order.created_at|date:'d/m/Y H:i' }}</p>
+          </div>
+        </div>
+        <div>&rsaquo;</div>
+      </div>
+=======
+
+  <div class="status-filter">
+    {% for status, label, css_class in status_list %}
+      <a href="?status={{ status }}" class="status-tab {% if selected_status == status %}active{% endif %}">
+        {{ label }} ({{ status_counts|get_item:status }})
+      </a>
+    {% endfor %}
+  </div>
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730
+
+  {% for order in purchases %}
+    <div class="order-item" onclick="openModal('modal-{{ order.id }}')">
+      <img src="{{ order.first_image }}" alt="สินค้า">
+      <div class="order-info">
+        <h4>คำสั่งซื้อ #{{ order.order_number }}</h4>
+        {% with items=order.items_list %}
+          {% for item in items|slice:":2" %}
+            {% if item.equipment %}
+              <p>{{ item.equipment.name|truncatechars:30 }} × {{ item.quantity }}</p>
+            {% endif %}
+          {% endfor %}
+          {% if items|length > 2 %}
+            <p>+ อีก {{ items|length|add:"-2" }} รายการ</p>
+          {% endif %}
+        {% endwith %}
+        <p><strong>รวม</strong> {{ order.total_price|floatformat:2 }} บาท</p>
+        <p class="order-date">เมื่อ {{ order.created_at|date:"d/m/Y เวลา H:i" }}</p>
+      </div>
+    </div>
+
+    <div id="modal-{{ order.id }}" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-{{ order.id }}')">&times;</span>
+        <h3>รายละเอียดคำสั่งซื้อ #{{ order.order_number }}</h3>
+        <div class="gray-box">
+          <p><strong>สินค้า</strong></p>
+          {% for item in order.items_list %}
+            {% if item.equipment %}
+              <p>- {{ item.equipment.name }} × {{ item.quantity }}</p>
+            {% endif %}
+          {% endfor %}
+          <p style="margin-top: 0.5rem;"><strong>รวมทั้งหมด:</strong> {{ order.total_price|floatformat:2 }} บาท</p>
+        </div>
+
+        <div class="gray-box">
+          <p><strong>ชื่อผู้รับ:</strong> {{ order.name }}</p>
+          <p><strong>เบอร์โทร:</strong> {{ order.tel }}</p>
+          <p><strong>ที่อยู่:</strong> {{ order.address }}</p>
+        </div>
+
+        <div class="gray-box">
+          <p><strong>สถานะ:</strong> {{ order.get_status_display }}</p>
+          <p><strong>วันที่สั่งซื้อ:</strong> {{ order.created_at|date:"d/m/Y เวลา H:i" }}</p>
+          {% if order.tracking_number %}
+            <p><strong>เลขพัสดุ:</strong> {{ order.tracking_number }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p style="text-align:center; color:#777;">ยังไม่มีคำสั่งซื้อ</p>
+  {% endfor %}
+</div>
+
+<script>
+<<<<<<< HEAD
+  function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+  function toggleQR(orderId) {
+    const qr = document.getElementById(`qr-container-${orderId}`);
+    qr.style.display = qr.style.display === 'block' ? 'none' : 'block';
+  }
+  function showSlipModal(id) {
+    document.getElementById('slip-modal-' + id).style.display = 'block';
+  }
+</script>
+=======
+  function openModal(id) { document.getElementById(id).style.display = 'block'; }
+  function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+</script>
+{% endblock %}
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730

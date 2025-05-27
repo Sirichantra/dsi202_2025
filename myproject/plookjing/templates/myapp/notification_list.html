@@ -1,0 +1,138 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Plantity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex justify-between items-center px-8 py-6 bg-white shadow-sm">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/kB05FDtm/logo2.png" alt="Plantity Logo" class="h-16 w-auto">
+        <span class="text-4xl font-bold text-green-900 mt-4">PlookJing</span>
+      </a>
+      <div class="flex items-center ml-auto"></div>
+      <div class="relative w-64">
+
+      </div>
+      
+      <a href="{% url 'notification_list' %}" class="text-green-900 text-xl relative hover:text-orange-600">
+        <i class="fas fa-bell"></i>
+  <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+      </a>
+      
+      <a href="{% url 'user_profile' %}">
+        <img src="https://i.postimg.cc/FsKfhghK/Chat-GPT-Image-May-27-2025-04-35-43-PM.png" class="rounded-full w-10 h-10" alt="User">
+      </a>      
+    </div>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+<h1 style="color: #0D3F31; margin-bottom: 1rem; text-align: center;">การแจ้งเตือนของคุณ</h1>
+=======
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}การแจ้งเตือน | PLOOKJING{% endblock %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    background-color: #EFFAF3;
+    font-family: 'Prompt', sans-serif;
+  }
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730
+
+  .notif-page {
+    max-width: 960px;
+    margin: 3rem auto;
+    padding: 2rem;
+  }
+
+  .notif-header {
+    font-size: 2.2rem;
+    color: #0D3F31;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .notif-card {
+    background: white;
+    padding: 1.5rem 1.8rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    border-left: 6px solid;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .notif-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .notif-card.unread {
+    border-color: #FB7E2B;
+    background: #FFF8F2;
+  }
+
+  .notif-card.read {
+    border-color: #B6E2C9;
+    background: #F6FBF9;
+  }
+
+  .notif-message {
+    font-size: 1.05rem;
+    color: #0D3F31;
+    margin-bottom: 0.4rem;
+  }
+
+  .notif-time {
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .empty-msg {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #888;
+    margin-top: 3rem;
+  }
+</style>
+
+<div class="notif-page">
+  <div class="notif-header">การแจ้งเตือนของคุณ</div>
+
+  {% if notifications %}
+    {% for n in notifications %}
+      <div class="notif-card {% if not n.is_read %}unread{% else %}read{% endif %}">
+        <div class="notif-message">{{ n.message }}</div>
+        <div class="notif-time">{{ n.notification_date|date:"d M Y เวลา H:i" }}</div>
+      </div>
+    {% endfor %}
+<<<<<<< HEAD
+  </div>
+{% else %}
+  <p style="text-align: center; color: #888;">ไม่มีการแจ้งเตือนในขณะนี้</p>
+{% endif %}
+=======
+  {% else %}
+    <p class="empty-msg">คุณยังไม่มีการแจ้งเตือน</p>
+  {% endif %}
+</div>
+{% endblock %}
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730

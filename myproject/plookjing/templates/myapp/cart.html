@@ -1,0 +1,399 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Plantity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex justify-between items-center px-8 py-6 bg-white shadow-sm">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/kB05FDtm/logo2.png" alt="Plantity Logo" class="h-16 w-auto">
+        <span class="text-4xl font-bold text-green-900 mt-4">PlookJing</span>
+      </a>
+      <div class="flex items-center ml-auto"></div>
+      <div class="relative w-64">
+
+      </div>
+      
+      <a href="{% url 'notification_list' %}" class="text-green-900 text-xl relative hover:text-orange-600">
+        <i class="fas fa-bell"></i>
+  <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+      </a>
+      
+      <a href="{% url 'user_profile' %}">
+        <img src="https://i.postimg.cc/FsKfhghK/Chat-GPT-Image-May-27-2025-04-35-43-PM.png" class="rounded-full w-10 h-10" alt="User">
+      </a>      
+    </div>
+
+=======
+{% extends 'base.html' %}
+{% block title %}ตะกร้าสินค้า | PLOOKJING{% endblock %}
+{% load static %}
+
+{% block content %}
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730
+<style>
+  body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #EFFAF3;
+  }
+
+  .cart-container {
+    max-width: 1080px;
+    margin: 1rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #E1E7E4;
+  }
+
+  h2.cart-header {
+    font-size: 2rem;
+    color: #0D3F31;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    color: #0D3F31;
+  }
+
+  table {
+    width: 100%;
+    border-spacing: 0 12px;
+    table-layout: fixed;
+  }
+
+  th, td {
+    padding: 1rem;
+    font-size: 0.95rem;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  th {
+    background-color: #E8F2EE;
+    color: #0D3F31;
+    font-weight: 600;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .row-item td {
+    background: #F9FCFB;
+  }
+
+  .item-name {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .item-name img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #D8E3DF;
+  }
+
+  .item-name div {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 320px;
+  }
+
+  .qty-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .qty-box {
+    width: 42px;
+    height: 32px;
+    text-align: center;
+    font-weight: 600;
+    background: #fff;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    line-height: 32px;
+  }
+
+  .qty-form button {
+    background: #fff;
+    color: #FB7E2B;
+    border: 1px solid #FB7E2B;
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .qty-form button:hover {
+    background: #FB7E2B;
+    color: #fff;
+  }
+
+  .remove-btn {
+    background: #FFECEC;
+    border: 1px solid #FFB3B3;
+    color: #C83E00;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  .section-select {
+    margin-bottom: 0.5rem;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #444;
+  }
+
+  .cart-total {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0D3F31;
+    margin-top: 2.5rem;
+  }
+
+  .cart-total span {
+    color: #FB7E2B;
+  }
+
+  .cart-actions {
+    text-align: right;
+    margin-top: 1.5rem;
+  }
+
+  .confirm-btn {
+    background: linear-gradient(135deg, #DFF8EC, #F0FFF8);
+    color: #0D3F31;
+    font-weight: 600;
+    border: none;
+    border-radius: 999px;
+    padding: 0.75rem 2.4rem;
+    font-size: 1.05rem;
+    cursor: pointer;
+  }
+</style>
+
+<style>
+  .btn-full-green {
+    background-color: #15803d; /* green-700 */
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+  }
+
+  .btn-full-green:hover {
+    background-color: #166534; /* green-800 */
+  }
+</style>
+
+<div class="cart-container">
+  <h2 class="cart-header">ตะกร้าของคุณ</h2>
+
+<<<<<<< HEAD
+  {% if cart_items %}
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Unit Price</th>
+        <th>Total</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <tr>
+        <td>
+          {{ item.item.name }}
+          {% if item.type == 'equipment' %}
+            <span style="color:#888;">(Equipment)</span>
+          {% else %}
+            <span style="color:#888;">(Tree)</span>
+          {% endif %}
+        </td>
+        <td>
+          <div class="qty-form">
+            <form method="post" action="{% url 'update_cart' item.type item.item.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="action" value="decrease">
+              <button type="submit">−</button>
+            </form>
+            <div class="qty-box">{{ item.quantity }}</div>
+            <form method="post" action="{% url 'update_cart' item.type item.item.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="action" value="increase">
+              <button type="submit">+</button>
+            </form>
+          </div>
+        </td>
+        <td style="text-align: right;">{{ item.item.price|floatformat:2 }} บาท</td>
+        <td style="text-align: right; color: #FB7E2B; font-weight: bold;">{{ item.total_price|floatformat:2 }} บาท</td>
+        <td>
+          <form method="post" action="{% url 'remove_from_cart' item.type item.item.id %}">
+            {% csrf_token %}
+            <button type="submit" class="remove-btn" title="ลบรายการนี้">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="cart-total">
+    Total: <span class="text-orange-600">{{ cart_total|floatformat:2 }} บาท</span>
+  </div>
+
+  <div class="cart-actions">
+    <form method="post" action="{% url 'process_cart_items' %}">
+      {% csrf_token %}
+      <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded-full hover:bg-green-800 transition">
+        🌱 ยืนยันคำสั่งซื้อ
+      </button>
+    </form>
+  </div>
+=======
+  {% for group_data in item_groups %}
+    {% if group_data.items %}
+      <div class="section-title">
+        {% if group_data.group == 'equipment' %}อุปกรณ์{% else %}ต้นไม้{% endif %}
+      </div>
+      <div class="section-select">
+        <label>
+          <input type="checkbox" class="select-all-group" data-group="{{ group_data.group }}">
+          เลือกทั้งหมดในหมวด
+        </label>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>สินค้า</th>
+            <th>จำนวน</th>
+            <th>ราคาต่อหน่วย</th>
+            <th>รวม</th>
+            <th>ลบ</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in group_data.items %}
+          <tr class="row-item">
+            <td class="item-name">
+              <input type="checkbox" class="item-checkbox" name="selected_items"
+                     value="{{ group_data.group }}:{{ item.item.id }}"
+                     data-group="{{ group_data.group }}" data-price="{{ item.total_price }}"
+                     style="margin-right: 8px;">
+              <img src="{{ item.item.image_url }}" alt="{{ item.item.name }}">
+              <div>{{ item.item.name }}</div>
+            </td>
+            <td style="min-width: 140px;">
+              <form method="post" action="{% url 'update_cart' group_data.group item.item.id %}" class="qty-form">
+                {% csrf_token %}
+                <button type="submit" name="action" value="decrease">−</button>
+                <div class="qty-box">{{ item.quantity }}</div>
+                <button type="submit" name="action" value="increase">+</button>
+              </form>
+            </td>
+            <td>{{ item.item.price|floatformat:2 }} ฿</td>
+            <td style="color:#FB7E2B; font-weight:bold;">{{ item.total_price|floatformat:2 }} ฿</td>
+            <td>
+              <form method="post" action="{% url 'remove_from_cart' group_data.group item.item.id %}">
+                {% csrf_token %}
+                <button type="submit" class="remove-btn">ลบ</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  {% endfor %}
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730
+
+  {% if not cart_items_equipment and not cart_items_tree %}
+    <p style="text-align:center; color:gray;">ไม่มีสินค้าในตะกร้าของคุณ</p>
+  {% else %}
+<<<<<<< HEAD
+  <div class="empty-cart">
+    <p>ตะกร้าของคุณว่างเปล่า 😢</p>
+    <a href="{% url 'tree_list' %}"
+      style="background-color: #FB923C; color: white;"
+      class="bg-orange-200 hover:bg-green-800 text-white text-center px-6 py-3 rounded-full shadow transition"> 
+      🌱 เลือกต้นไม้
+    </a>
+  </div>
+  {% endif %}
+</div>
+=======
+    <div class="cart-total">รวมทั้งหมด <span id="selected-total">{{ cart_total|floatformat:2 }} ฿</span></div>
+    <div class="cart-actions">
+      <form method="post" action="{% url 'process_cart_items' %}">
+        {% csrf_token %}
+        <input type="hidden" name="selected_items" id="selected-items-field" value="all">
+        <button type="submit" class="confirm-btn">ยืนยันรายการ</button>
+      </form>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  function updateSelectedTotal() {
+    let total = 0;
+    document.querySelectorAll('.item-checkbox:checked').forEach(cb => {
+      total += parseFloat(cb.getAttribute('data-price')) || 0;
+    });
+    document.getElementById('selected-total').innerText = total.toFixed(2) + ' ฿';
+  }
+
+  document.querySelectorAll('.item-checkbox').forEach(cb => {
+    cb.addEventListener('change', updateSelectedTotal);
+  });
+
+  document.querySelectorAll('.select-all-group').forEach(master => {
+    master.addEventListener('change', () => {
+      const group = master.getAttribute('data-group');
+      const checkboxes = document.querySelectorAll(`.item-checkbox[data-group="${group}"]`);
+      checkboxes.forEach(cb => cb.checked = master.checked);
+      updateSelectedTotal();
+    });
+  });
+
+  document.querySelector('.confirm-btn').addEventListener('click', function () {
+    const selected = Array.from(document.querySelectorAll('.item-checkbox:checked')).map(cb => cb.value);
+    document.getElementById('selected-items-field').value = selected.join(',');
+  });
+</script>
+{% endblock %}
+>>>>>>> 0b2d97dce2f849f04b766ae2fdee01bed4e9c730

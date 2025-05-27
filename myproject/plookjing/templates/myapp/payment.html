@@ -1,0 +1,72 @@
+DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Plantity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex justify-between items-center px-8 py-6 bg-white shadow-sm">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/kB05FDtm/logo2.png" alt="Plantity Logo" class="h-16 w-auto">
+        <span class="text-4xl font-bold text-green-900 mt-4">PlookJing</span>
+      </a>
+      <div class="flex items-center ml-auto"></div>
+      <div class="relative w-64">
+
+      </div>
+      
+      <a href="{% url 'notification_list' %}" class="text-green-900 text-xl relative hover:text-orange-600">
+        <i class="fas fa-bell"></i>
+  <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+      </a>
+      
+      <a href="{% url 'user_profile' %}">
+        <img src="https://i.postimg.cc/FsKfhghK/Chat-GPT-Image-May-27-2025-04-35-43-PM.png" class="rounded-full w-10 h-10" alt="User">
+      </a>      
+    </div>
+
+<div class="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-lg font-[Prompt] mt-10">
+  <h1 class="text-2xl font-bold text-green-900 mb-6 text-center">💳 ชำระเงินสำหรับการปลูกต้นไม้</h1>
+
+  <div class="flex flex-col sm:flex-row gap-4 items-center mb-6">
+    <img src="{{ tree.image }}" alt="{{ tree.name }}" class="w-32 h-32 rounded-xl object-cover shadow" />
+    <div>
+      <p class="text-lg font-semibold text-green-900">{{ tree.name }}</p>
+      <p class="text-sm text-gray-600">ปลูกที่: <span class="font-medium">{{ location.name }}</span></p>
+      <p class="text-orange-600 font-bold mt-2">{{ tree.price|floatformat:2 }} บาท</p>
+    </div>
+  </div>
+
+  <div class="bg-orange-100 text-orange-800 p-4 rounded-lg mb-6 text-sm">
+    📌 โอนเงินตามจำนวนด้านบน แล้วแนบหลักฐานการชำระเงิน
+  </div>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label class="block mb-2 font-semibold text-green-900">แนบสลิปโอนเงิน:</label>
+    <input type="file" name="slip" accept="image/*"
+           class="block w-full border rounded-lg p-2 mb-4 text-sm" required>
+
+    <button type="submit"
+            class="bg-orange-400 hover:bg-green-800 text-white px-6 py-3 rounded-full font-semibold w-full transition">
+      ✅ ยืนยันการชำระเงิน
+    </button>
+  </form>
+
+  <p class="text-xs text-gray-500 mt-4 text-center">หลังจากยืนยัน ระบบจะบันทึกคำสั่งซื้อของคุณไว้ที่ “ต้นไม้ของฉัน”</p>
+</div>
+
+

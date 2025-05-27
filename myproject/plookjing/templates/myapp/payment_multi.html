@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% block title %}ยืนยันคำสั่งซื้อ | PLOOKJING{% endblock %}
+{% load static %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #EFFAF3;
+  }
+  .payment-container {
+    max-width: 720px;
+    margin: 3rem auto;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  }
+  .payment-header { text-align: center; margin-bottom: 1rem; }
+  .order-summary-meta {
+    text-align: center;
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .section-title {
+    font-size: 1.1rem;
+    color: #0D3F31;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+  }
+  .item-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #F9FAFB;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+  .item-box img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+  .item-info {
+    flex: 1;
+  }
+  .item-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: #0D3F31;
+  }
+  .item-info p {
+    margin: 0.2rem 0;
+    color: #444;
+    font-size: 0.9rem;
+  }
+  .total-amount {
+    text-align: right;
+    font-size: 1.4rem;
+    color: #FB7E2B;
+    font-weight: bold;
+    margin-top: 1.5rem;
+  }
+  .shipping-info {
+    background: #F8F9FA;
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+  }
+  .shipping-info h4 {
+    margin: 0 0 0.5rem;
+    color: #0D3F31;
+    font-size: 1.1rem;
+  }
+  .shipping-info p {
+    margin: 0.2rem 0;
+    color: #333;
+  }
+  .qr-box {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .qr-box img {
+    width: 180px;
+    height: 180px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+  }
+  #countdown {
+    margin-top: 0.5rem;
+    color: #FB7E2B;
+    font-weight: bold;
+  }
+  .upload-form {
+    margin-top: 2rem;
+  }
+  .upload-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0D3F31;
+  }
+  .upload-form input[type="file"] {
+    display: block;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  .upload-btn {
+    background-color: #0D6E3E;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .upload-btn:hover {
+    background-color: #095C34;
+  }
+</style>
+
+<div class="payment-container">
+  <div class="payment-header">
+    <h2>ยืนยันการชำระเงิน</h2>
+  </div>
+
+  <div class="order-summary-meta">
+    เลขที่คำสั่งซื้อ: <strong style="color:#FB7E2B;">#{{ order_id }}</strong><br>
+    วันที่ {{ order_date|date:"d M Y เวลา H:i" }} | {{ total_items }} รายการ
+  </div>
+
+  {% if items %}
+    {% for entry in items %}
+      {% ifchanged entry.type %}
+        <div class="section-title">
+          {% if entry.type == 'tree' %}รายการต้นไม้{% else %}รายการอุปกรณ์{% endif %}
+        </div>
+      {% endifchanged %}
+
+      <div class="item-box">
+        <img src="{{ entry.image_url }}" alt="{{ entry.name }}">
+        <div class="item-info">
+          <h4>{{ entry.name }}</h4>
+          <p>จำนวน: {{ entry.qty }} {% if entry.type == 'tree' %}ต้น{% else %}ชิ้น{% endif %}</p>
+          <p>รวม: <strong style="color:#FB7E2B;">{{ entry.total|floatformat:2 }} บาท</strong></p>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="total-amount">ยอดรวมทั้งหมด {{ total|floatformat:2 }} บาท</div>
+
+  {% if has_tree and tree_location %}
+    <div class="shipping-info">
+      <h4>สถานที่ปลูกต้นไม้</h4>
+      <p><strong>{{ tree_location.name }}</strong></p>
+      <p>{{ tree_location.description }}</p>
+    </div>
+  {% endif %}
+
+  {% if has_equipment and name and tel and full_address %}
+    <div class="shipping-info">
+      <h4>ข้อมูลผู้รับ</h4>
+      <p><strong>{{ name }}</strong> ({{ tel }})</p>
+      <p>{{ full_address }}</p>
+    </div>
+  {% endif %}
+
+  <div class="qr-box">
+    <p>กรุณาตรวจสอบรายการและดำเนินการภายใน 5 นาที</p>
+    <img src="data:image/png;base64,{{ qr_base64 }}" alt="QR Code">
+    <p>สแกน QR ด้วยแอปธนาคารเพื่อชำระเงิน</p>
+    <p id="countdown"></p>
+  </div>
+
+  <form method="post" action="{% url 'create_order_multi' %}" enctype="multipart/form-data" class="upload-form">
+    {% csrf_token %}
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="tel" value="{{ tel }}">
+    <input type="hidden" name="address" value="{{ full_address }}">
+
+    <label for="payment_slip">แนบสลิปชำระเงิน</label>
+    <input type="file" id="payment_slip" name="payment_slip" accept="image/*">
+
+    <button type="submit" class="upload-btn">ยืนยันคำสั่งซื้อ</button>
+  </form>
+</div>
+
+<script>
+  let seconds = 300;
+  const countdownEl = document.getElementById('countdown');
+  function updateCountdown() {
+    if (seconds <= 0) {
+      alert("QR Code หมดอายุแล้ว กรุณาเริ่มการสั่งซื้อใหม่อีกครั้ง");
+      window.location.href = "{% url 'cart' %}";
+      return;
+    }
+    const minutes = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    countdownEl.textContent = `QR Code จะหมดอายุใน ${minutes}:${sec.toString().padStart(2, '0')} นาที`;
+    seconds--;
+    setTimeout(updateCountdown, 1000);
+  }
+  updateCountdown();
+</script>
+{% endblock %}

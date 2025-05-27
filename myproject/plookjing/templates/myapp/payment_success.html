@@ -1,0 +1,104 @@
+DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Plantity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex justify-between items-center px-8 py-6 bg-white shadow-sm">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/kB05FDtm/logo2.png" alt="Plantity Logo" class="h-16 w-auto">
+        <span class="text-4xl font-bold text-green-900 mt-4">PlookJing</span>
+      </a>
+      <div class="flex items-center ml-auto"></div>
+      <div class="relative w-64">
+
+      </div>
+      
+      <a href="{% url 'notification_list' %}" class="text-green-900 text-xl relative hover:text-orange-600">
+        <i class="fas fa-bell"></i>
+  <!-- Notification badge -->
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
+      </a>
+      
+      <a href="{% url 'user_profile' %}">
+        <img src="https://i.postimg.cc/FsKfhghK/Chat-GPT-Image-May-27-2025-04-35-43-PM.png" class="rounded-full w-10 h-10" alt="User">
+      </a>      
+    </div>
+
+<style>
+  body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #F6F9FB;
+  }
+  .success-box {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+  }
+  .success-box h2 {
+    font-size: 2rem;
+    color: #0D6E3E;
+    margin-bottom: 1rem;
+  }
+  .success-box p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 2rem;
+  }
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 0.9rem 1.8rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: background 0.3s;
+    font-size: 0.95rem;
+  }
+  .orange-btn {
+    background-color: #FB7E2B;
+    color: white;
+  }
+  .orange-btn:hover {
+    background-color: #E76C1C;
+  }
+  .green-btn {
+    background-color: #0D6E3E;
+    color: white;
+  }
+  .green-btn:hover {
+    background-color: #095C34;
+  }
+</style>
+
+<div class="success-box">
+  <h2>Payment Successful</h2>
+  <p>Thank you for planting a tree with us! We’ve received your payment and your tree is now being processed.</p>
+  <div class="action-buttons">
+    <a href="{% url 'home' %}" class="btn orange-btn">← Back to Home</a>
+    <a href="{% url 'my_trees' %}" class="btn green-btn">View My Trees</a>
+  </div>
+</div>
